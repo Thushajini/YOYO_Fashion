@@ -2,10 +2,9 @@ package com.example.eCommerce.controller;
 
 import com.example.eCommerce.dto.LoginRequest;
 import com.example.eCommerce.dto.RegisterRequest;
-import com.example.eCommerce.repository.UserRepository;
 import com.example.eCommerce.service.AuthService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+// import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

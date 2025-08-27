@@ -10,7 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/cart")
+@RequestMapping("/api")
 public class CartController {
     private CartService cartService;
 
@@ -18,15 +18,15 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    @GetMapping
+    @GetMapping("/cart")
     public ResponseEntity<Cart> getCart(){
         String username = getCurrentUsername();
         return  ResponseEntity.ok(cartService.getCartByUser(username));
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Cart> addToCart(@PathVariable String username, @RequestBody AddToCartDto addCartDto){
-        return ResponseEntity.ok(cartService.addToCart(username, addCartDto.getProductId(), addCartDto.getQuantity()));
+    public ResponseEntity<Cart> addToCart(@PathVariable String username, @RequestBody AddToCartDto request){
+        return ResponseEntity.ok(cartService.addToCart(username, request));
 
     }
 

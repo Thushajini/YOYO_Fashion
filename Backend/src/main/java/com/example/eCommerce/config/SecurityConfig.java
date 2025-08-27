@@ -3,10 +3,10 @@ package com.example.eCommerce.config;
 import com.example.eCommerce.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
+
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,13 +27,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http, JwtFilter jwtFilter) throws Exception{
        http
                .csrf(AbstractHttpConfigurer::disable)
-               .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-               .authorizeHttpRequests((auth) -> auth
-                       .requestMatchers("/auth/**").permitAll()
-                       .anyRequest().authenticated()
+//               .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+//               .authorizeHttpRequests((auth) -> auth
+//                       .requestMatchers("/auth/**").permitAll();
+////                       .anyRequest().authenticated();
+               .authorizeHttpRequests()
+               .anyRequest().permitAll();
 
-        )
-               .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+//        )
+//               .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 //        .httpBasic(Customizer.withDefaults()); //default login page
 return http.build();
     }

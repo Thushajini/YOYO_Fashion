@@ -27,5 +27,5 @@ public class Product {
     private List<CartItem> cartItem;
 
 
-    private int stock;
+    private  boolean available;
 }

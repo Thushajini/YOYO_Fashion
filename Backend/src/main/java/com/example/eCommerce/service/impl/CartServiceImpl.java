@@ -1,5 +1,6 @@
 package com.example.eCommerce.service.impl;
 
+import com.example.eCommerce.dto.AddToCartDto;
 import com.example.eCommerce.model.Cart;
 import com.example.eCommerce.model.CartItem;
 import com.example.eCommerce.model.Product;
@@ -19,62 +20,55 @@ public class CartServiceImpl implements CartService {
 
     private CartRepository cartRepository;
     private ProductRepository productRepository;
-    private UserRepository userRepository;
 
-    public CartServiceImpl(CartRepository cartRepository, ProductRepository productRepository, UserRepository userRepository) {
+
+    public CartServiceImpl(CartRepository cartRepository, ProductRepository productRepository) {
         this.cartRepository = cartRepository;
         this.productRepository = productRepository;
-        this.userRepository = userRepository;
+
     }
 
     @Override
     public Cart getCartByUser(String username) {
-        return cartRepository.findByuserUsername(username)
+        return cartRepository.findByUsername(username)
                 .orElseGet(() -> createCartForUser(username));
     }
 
     @Override
-    public Cart addToCart(String username, Long productId, int quantity) {
-        if (quantity <= 0) {
-            throw new IllegalArgumentException("Quantity must be greater than zero");
-        }
+    public Cart addToCart(String username, AddToCartDto request) {
 
-        Cart cart = getCartByUser(username);
-        Product product = productRepository.findById(productId)
+        Cart cart = cartRepository.findByUsername(username)
+                .orElseGet(() -> {
+                    Cart newCart = new Cart();
+                    newCart.setUsername(username);
+                    return cartRepository.save(newCart);
+                });
+
+        Product product = productRepository.findById(request.getProductId())
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
-        if (product.getStock() < quantity) {
-            throw new RuntimeException("Not enough stock available");
-        }
 
         Optional<CartItem> existingItem = cart.getItems().stream()
-                .filter(item -> item.getProduct().getProductId().equals(productId))
+                .filter(item -> item.getProduct().getProductId().equals(product.getProductId()))
                 .findFirst();
 
         if (existingItem.isPresent()) {
             CartItem item = existingItem.get();
-            int newquantity = item.getQuantity() + quantity;
+            item.setQuantity(item.getQuantity() + request.getQuantity());
 
-
-            if (product.getStock() < newquantity) {
-                throw new RuntimeException("Not enough stock for updated quantity");
-            }
-            item.setQuantity(newquantity);
         } else {
-            CartItem item = CartItem.builder()
-                    .cart(cart)
-                    .product(product)
-                    .quantity(quantity)
-                    .build();
-
-            cart.getItems().add(item);
-
-
+            CartItem newItem = new CartItem();
+            newItem.setProduct(product);
+            newItem.setQuantity(request.getQuantity());
+            newItem.setCart(cart);
+            cart.getItems().add(newItem);
 
         }
+
         return cartRepository.save(cart);
 
-    }
+}
+
 
     public Cart removeFromCart(String username,Long productId){
         Cart cart = getCartByUser(username);
@@ -83,14 +77,12 @@ public class CartServiceImpl implements CartService {
         return cartRepository.save(cart);
     }
 
-
     private Cart createCartForUser(String username){
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
 
         Cart cart = new Cart();
-        cart.setUser(user);
+        cart.setUsername(username);
         return cartRepository.save(cart);
 
-}
+    }
+
 }

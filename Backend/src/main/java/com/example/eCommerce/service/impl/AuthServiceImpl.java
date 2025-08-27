@@ -5,9 +5,9 @@ import com.example.eCommerce.dto.RegisterRequest;
 import com.example.eCommerce.model.User;
 import com.example.eCommerce.repository.UserRepository;
 import com.example.eCommerce.service.AuthService;
-import com.example.eCommerce.service.UserService;
+
 import com.example.eCommerce.util.JwtUtil;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class AuthServiceImpl implements AuthService {
@@ -23,14 +23,15 @@ private JwtUtil jwtUtil;
 
     @Override
     public String register(RegisterRequest registerRequest) {
-
+        String Regemail = registerRequest.getEmail();
         String Regusername = registerRequest.getUsername();
         String Regpassword = registerRequest.getPassword();
-        if(userRepository.findByUsername(Regusername).isPresent()){
-            throw new IllegalArgumentException("Username already exists");
+        if(userRepository.findByUsername(Regemail).isPresent()){
+            throw new IllegalArgumentException("Email already exists");
         }
 
         User user = User.builder()
+                .email(Regemail)
                 .username(Regusername)
                 .password(Regpassword)
                 .role("ROLE_USER")

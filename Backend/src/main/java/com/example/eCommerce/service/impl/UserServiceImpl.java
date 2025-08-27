@@ -3,8 +3,7 @@ package com.example.eCommerce.service.impl;
 import com.example.eCommerce.model.User;
 import com.example.eCommerce.repository.UserRepository;
 import com.example.eCommerce.service.UserService;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 @Service
@@ -43,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
                 .price(product.getPrice())
                 .description(product.getDescription())
                 .imageUrl(product.getImageUrl())
+                 .available(product.isAvailable())
                 .build();
 
         return productRepository.save(updatedProduct);

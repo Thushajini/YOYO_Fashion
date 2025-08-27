@@ -2,14 +2,15 @@ package com.example.eCommerce.controller;
 
 import com.example.eCommerce.model.Product;
 import com.example.eCommerce.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products/")
+@RequestMapping("/api")
+@CrossOrigin(origins = "*")
+
 public class ProductController {
 
     private ProductService productService;
@@ -18,7 +19,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
+    @GetMapping("/products")
     public ResponseEntity<List<Product>> gellAllProducts(){
         List<Product> products=productService.getAllProducts();
         return ResponseEntity.ok(products);
@@ -31,7 +32,7 @@ public class ProductController {
 
     }
 
-    @PostMapping
+    @PostMapping("/products")
 //    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> createProduct(@RequestBody Product product){
         Product newproduct = productService.addProduct(product);
