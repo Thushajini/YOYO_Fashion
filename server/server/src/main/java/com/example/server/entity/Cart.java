@@ -1,10 +1,6 @@
-package com.example.server.model;
+package com.example.server.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import jakarta.persistence.Entity;
 
 @Entity
@@ -21,14 +17,13 @@ public class Cart {
     private Product product;
     private int quantity;
 
-    @JoinColumn(name="user_id",nullable = false)
-    private User user;
 
-    public Cart(Long cartId, Product product, int quantity,User user) {
+
+    public Cart(Long cartId, Product product, int quantity) {
         this.cartId = cartId;
         this.product = product;
         this.quantity = quantity;
-        this.user=user;
+
     }
 
     public Cart() {
@@ -37,7 +32,7 @@ public class Cart {
     public Cart(Product product, int quantity,User user) {
         this.product = product;
         this.quantity = quantity;
-        this.user=user;
+
 
     }
 
@@ -65,11 +60,5 @@ public class Cart {
         this.quantity = quantity;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

@@ -55,24 +55,42 @@ export const Cart = () => {
 
       
   return (
-    <div>
+    <div className='cart-container'>
         <h1 className='cart-heading'>Cart Items</h1>
-            <ul className="cart-page">
-                {
-                    cartItem.map((item) => (
-                        <li key={item.cartId} className='cart-item'>
-                            <img src="https://m.media-amazon.com/images/I/51fYXSnSu9L._AC_UY327_FMwebp_QL65_.jpg" alt="" className='img' />
-                            {item.product.productName} 
-                            <br/>
-                           Quantity = {item.quantity}
-                            <br/>  
-                            {item.product.price * item.quantity}
-                            <button  onClick={()=>deleteCartItem(item.product.productId)}className='cart-button'>remove</button>
-                        </li>
+       
+            <table className="cart-page">
+               <thead>
+          <tr>
+            <th>Product</th>
+             <th>ProductName</th>
+             <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+           
+            
+          </tr>
+        </thead>
+        <tbody>
+              
+                {cartItem.map((item) => (
+                        <tr key={item.cartId} className='cart-item'>
+                           <td> <img src="https://m.media-amazon.com/images/I/51fYXSnSu9L._AC_UY327_FMwebp_QL65_.jpg" alt="" className='img' /></td>
+                           <td> {item.product.productName} </td>
+                            
+                           <td> {item.quantity} </td>
+                             
+                           <td> {item.product.price * item.quantity}</td>
+                            <td><button  onClick={()=>deleteCartItem(item.product.productId)}className='cart-button'>remove</button></td>
+                        </tr>
                     ))
                 }
-                <h2 className='amount'>TotalAmount:{total}</h2>
-            </ul>
+                </tbody>
+                </table>
+               
+              
+                <h2 className='amount'>Amount:{total}</h2>
+               
+           
 
             
 

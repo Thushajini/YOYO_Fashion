@@ -1,14 +1,13 @@
 package com.example.server.service.impl;
 
 import com.example.server.dto.CartItemRequest;
-import com.example.server.model.Cart;
-import com.example.server.model.Product;
+import com.example.server.entity.Cart;
+import com.example.server.entity.Product;
 import com.example.server.repository.CartRepository;
 import com.example.server.repository.ProductRepository;
 import com.example.server.service.CartService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;

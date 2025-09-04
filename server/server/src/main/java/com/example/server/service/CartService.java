@@ -1,7 +1,7 @@
 package com.example.server.service;
 
 import com.example.server.dto.CartItemRequest;
-import com.example.server.model.Cart;
+import com.example.server.entity.Cart;
 
 import java.util.List;
 

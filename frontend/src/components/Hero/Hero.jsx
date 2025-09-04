@@ -1,7 +1,7 @@
 import React from 'react'
 import './Hero.css';
 import hand_icon from '../Assets/hand_icon.png';
-import arrow from '../Assets/arrow.png';
+
 import hero_image from '../Assets/hero_image.png';
 
 export const Hero = () => {
@@ -16,7 +16,7 @@ export const Hero = () => {
             <p>YOYO Fashion</p>
           <div className="hero-btn">
             <div>Collections</div>
-            <img src={arrow} alt="" /> 
+            
           </div>
         </div>
         <div className='hero-right'>
