@@ -4,13 +4,12 @@ import { Home } from './pages/Home.jsx';
  import {Shop}  from './pages/Shop.jsx';
 import ProductDetails  from './pages/ProductDetails.jsx';
 import { LoginPage } from './pages/LoginPage.jsx';
-// import { Footer } from './components/Footer/Footer.jsx';
 import { Cart } from './pages/Cart.jsx';
 import { Register } from './pages/Register.jsx';
 
 
 const App = () => {
-  // const username = "thusha";
+
   return (
     <div>
       <BrowserRouter>
@@ -23,12 +22,8 @@ const App = () => {
        <Route path="/products/:productId" element={<ProductDetails />}/>
        <Route path="/cart" element={<Cart/>}/>
        </Routes>
-      {/* <Footer/> */}
       </BrowserRouter>
     </div>
-     
-    
-    
   );
 }
 export default App;

@@ -1,10 +1,10 @@
 .navbar{
-
     display: flex;
     justify-content: space-around;
     padding:16px;
    border: solid rgb(116, 98, 98);
     box-shadow:   1px 3px -2px rgb(36, 4, 4);
+    
 }
 
 .nav-logo{
@@ -74,11 +74,6 @@
   position: relative;  
   display: inline-block;
 }
-
-/* .cart-wrapper img {
-  width: 30px;  
-  height: 30px;
-} */
 
 .cart-badge {
   position: absolute;

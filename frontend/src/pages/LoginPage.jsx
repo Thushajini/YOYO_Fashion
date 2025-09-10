@@ -6,9 +6,8 @@ import { Link } from 'react-router-dom';
 
 export const LoginPage = () => {
   const [values,setUser] = useState({
-      username:'',
-      email:'',
-    password:''
+      email:"",
+    password:"",
     })
   const[message,setMessage] = useState("");
   const navigate =useNavigate();
@@ -52,6 +51,7 @@ export const LoginPage = () => {
         placeholder='Enter your email'
         value={values.email}
         onChange={handleChanges}
+        autoComplete="off"
         required/>
 
         <input
@@ -60,6 +60,7 @@ export const LoginPage = () => {
         value={values.password}
         placeholder='Enter the password'
         onChange={handleChanges}
+      autoComplete="new-password"
         required
         />
         <button type='submit' >Login</button>

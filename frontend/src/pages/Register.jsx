@@ -6,9 +6,9 @@ import './CSS/login.css';
 
 export const Register = () => {
   const [values,setUser] = useState({
-    username:'',
-    email:'',
-  password:''
+    username:"",
+    email:"",
+  password:""
   })
 
   const[message,setMessage] = useState("");
@@ -20,10 +20,14 @@ export const Register = () => {
     e.preventDefault(); // ✅ prevent page refresh
 
     try {
-      const res = await axios.post("http://localhost:8080/api/user/register",values
+      const res = await axios.post("http://localhost:8080/api/user/register",{
+       username: values.username,
+  email: values.email,
+  password: values.password
+      }
       );
 
-        // setMessage("Registration Successful");
+ 
         alert("Registration Successful");
         console.log(res.data);
       
@@ -37,6 +41,7 @@ export const Register = () => {
     }
   };
   return (
+    
     <div className='login-container'>
       <h2>Sign Up</h2>
          {message && <p >{message}</p>}
@@ -49,6 +54,7 @@ export const Register = () => {
         placeholder="Enter your username"
         value={values.username}
         onChange={handleChanges}
+        autoComplete="off"
         required
         />
         <input
@@ -57,6 +63,7 @@ export const Register = () => {
         placeholder="Enter your email"
         value={values.email}
         onChange={handleChanges}
+        autoComplete="off"
         required/>
 
         <input
@@ -65,6 +72,7 @@ export const Register = () => {
         value={values.password}
         placeholder="Enter the password"
         onChange={handleChanges}
+        autoComplete="new-password"
         required
         />
         <button type='submit' >Signup</button>

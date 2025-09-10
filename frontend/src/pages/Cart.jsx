@@ -75,6 +75,7 @@ export const Cart = () => {
 
       
   return (
+    
     <div className='cart-container'>
         <h1 className='cart-heading'>Cart Items</h1>
        

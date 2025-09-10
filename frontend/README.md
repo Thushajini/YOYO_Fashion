@@ -1,12 +1,58 @@
-# React + Vite
+# 🛍️ YOYO Fashion - E-Commerce Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+YOYO Fashion is a simple **e-commerce web application** built using:
 
-Currently, two official plugins are available:
+- **Spring Boot** (Backend, REST API, Authentication, Image Upload)
+- **React.js** (Frontend, UI, Routing)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+It supports **product listing, image upload, and authentication**.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Tech Stack
+
+- **Backend**: Spring Boot, Spring Security (JWT), JPA/Hibernate, MySQL  
+- **Frontend**: React.js, React Router, Axios, TailwindCSS (or CSS)  
+- **Database**: MySQL  
+
+---
+
+
+---
+
+## ⚙️ Backend Setup (Spring Boot)
+
+1. **Install dependencies**  
+   Make sure you have:
+   - [Java 17+](https://adoptium.net/)  
+   - [Maven](https://maven.apache.org/)  
+   - [MySQL](https://dev.mysql.com/downloads/)
+
+2. **Create a database** in MySQL:
+   ```sql
+   CREATE DATABASE yoyo_fashion;
+
+ - Run the Backend 👉 http://localhost:8080
+
+---
+---
+## ⚙️ Frontend Setup (React)
+ **Create a folder** in VS Code
+``` 
+npm create vite@latest foldername;
+cd foldername
+
+npm install
+npm run dev
+```
+
+ - Run the frontend 👉 http://localhost:3000
+
+ ---
+ ---
+## 🎥 Demo Video
+[ECommerce](../frontend/src/components/Assets/ecommercedemo.mp4)
+
+
+
+
