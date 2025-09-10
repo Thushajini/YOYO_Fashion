@@ -15,7 +15,8 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private long productId;
-   private String productName,description,imageUrl;
+   private String productName,description;
+   private String image;
     private double price ;
    private int rating;
 
@@ -43,12 +44,12 @@ public class Product {
         this.description = description;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(String image) {
+        this. image =  image;
     }
 
     public double getPrice() {

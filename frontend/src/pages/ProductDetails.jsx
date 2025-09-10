@@ -60,16 +60,12 @@ import arrow from "../components/Assets/arrow.png"
     return <p className="p-6">Loading product details...</p>;
   }
 
-// const addToCart = (products) => {
-//     setCart((preCart) => [...preCart,products]);
-//     alert("hi");
-//   }
 
 
   return (
     <div className="container"> 
        <div className="detail">
-        <img src ="https://m.media-amazon.com/images/I/51fYXSnSu9L._AC_UY327_FMwebp_QL65_.jpg" alt ="" className="img"/>
+        <img src ={`http://localhost:8080/uploads/${product.image}`} alt ="" className="img"/>
         <div className="details">
         <h3 className="name">{product.productName}</h3>
         <p className="des">{product.description}</p>
@@ -82,7 +78,7 @@ import arrow from "../components/Assets/arrow.png"
          
 
         </div>
-        <div className="price">${product.price}</div>
+        <div className="price">{product.price}.00</div>
         <button  onClick={() => addToCart(product)} className="cart">Add to Cart</button>
         </div>
       </div>

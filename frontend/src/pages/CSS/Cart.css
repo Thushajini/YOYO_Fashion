@@ -40,8 +40,8 @@
 }
 
 .cart-page td img.img {
-    width: 40px;
-    height: 50px;
+    width: 60px;
+    height: 100px;
     object-fit: cover;
     border-radius: 5px;
      margin: 0;         /* no margin */
@@ -78,4 +78,10 @@
 .cart-item td {
     vertical-align: middle;
      line-height: 1;
+}
+
+.count{
+    border: 1px solid ;
+    font-size: 15px;
+    font-weight: bold;
 }

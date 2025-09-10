@@ -4,6 +4,7 @@ import { deleteCart, getCarts } from '../api';
 import "./CSS/Cart.css";
 import { CartContext } from '../context/CartContext';
 
+
 export const Cart = () => {
 
     const [cartItem,setCartItem] = useState([]);
@@ -53,6 +54,25 @@ export const Cart = () => {
        
       }
 
+      const increaseQuantity = (productId) => {
+    const updatedCart = cartItem.map((item) =>
+      item.product.productId === productId
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    );
+    setCartItem(updatedCart);
+  };
+
+  const decreaseQuantity = (productId) => {
+    const updatedCart = cartItem.map((item) =>
+      item.product.productId === productId && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    );
+    setCartItem(updatedCart);
+  };
+
+
       
   return (
     <div className='cart-container'>
@@ -74,10 +94,10 @@ export const Cart = () => {
               
                 {cartItem.map((item) => (
                         <tr key={item.cartId} className='cart-item'>
-                           <td> <img src="https://m.media-amazon.com/images/I/51fYXSnSu9L._AC_UY327_FMwebp_QL65_.jpg" alt="" className='img' /></td>
+                           <td> <img src={`http://localhost:8080/uploads/${item.product.image}`} alt="" className='img' /></td>
                            <td> {item.product.productName} </td>
                             
-                           <td> {item.quantity} </td>
+                           <td> <button className="count" onClick={() => decreaseQuantity(item.product.productId)}> - </button>   {item.quantity}   <button className="count" onClick={() => increaseQuantity(item.product.productId)}> + </button></td>
                              
                            <td> {item.product.price * item.quantity}</td>
                             <td><button  onClick={()=>deleteCartItem(item.product.productId)}className='cart-button'>remove</button></td>
@@ -88,7 +108,7 @@ export const Cart = () => {
                 </table>
                
               
-                <h2 className='amount'>Amount:{total}</h2>
+                <h2 className='amount'>Amount:{total}.00</h2>
                
            
 
