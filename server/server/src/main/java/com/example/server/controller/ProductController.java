@@ -45,13 +45,12 @@ public class ProductController {
             @ModelAttribute Product product,
             @RequestParam("proImage") MultipartFile file) throws IOException {
 
-        // Check if file is present
         if (file != null && !file.isEmpty()) {
             String filename = file.getOriginalFilename();
             Path path = Paths.get(uploadDirectory, filename);
             Files.write(path, file.getBytes());
 
-            // set the filename in the entity
+           
             product.setImage(filename);
         }
 
@@ -61,29 +60,4 @@ public class ProductController {
     }
 
 
-//    @PostMapping("/add")
-//    public ResponseEntity<Product> addProduct(
-//            @ModelAttribute Product product,
-//            @RequestParam(value = "proImage", required = false) MultipartFile file) throws IOException {
-//
-//        // Ensure upload folder exists
-//        Path uploadPath = Paths.get(uploadDirectory);
-//        if (!Files.exists(uploadPath)) {
-//            Files.createDirectories(uploadPath);
-//        }
-//
-//        // Save uploaded file if present
-//        if (file != null && !file.isEmpty()) {
-//            String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
-//            Path path = uploadPath.resolve(filename);
-//            Files.write(path, file.getBytes());
-//            product.setImage(filename);
-//        } else {
-//            // If no file uploaded, assign a default image
-//            product.setImage("default.png");
-//        }
-//
-//        // Save product in DB
-//        Product savedProduct = productService.createProduct(product);
-//        return ResponseEntity.ok(savedProduct);
     }
